@@ -13,9 +13,32 @@
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
         <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    </head> 
+    <script>
+        $(document).ready(function () {
+            let vue = new Vue({
+                "el": "#app",
+                "data": {
+                    items:[]
+                }
+            });
 
-    </head>
+            $.ajax("webapi/items", {
+                success: function (d) {
+                    vue.items = d;
+                }
+
+            });
+        });
+    </script>
     <body>
-        <h1>Hello World!</h1>
+        <div id="app">
+            <div v-for='item in items'>
+                Product Name : {{item.product}}
+                Unit Price:{{item.unitprice}}
+                Amount:{{item.amount}}
+                <hr/>
+            </div>
+        </div>
     </body>
 </html>

@@ -21,14 +21,7 @@ public class ShoppingItemsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ShoppingItem> getItems(){
-       List<ShoppingItem> items=new ArrayList<>();
-       for(int i=0;i<5;i++){
-          ShoppingItem item=new ShoppingItem();
-          item.setProduct("book"+i);
-          item.setAmount(5);
-          item.setUnitprice(50);
-          items.add(item);
-       }
-       return items;
+     
+       return ShoppingCart.getitems();
     }
 }

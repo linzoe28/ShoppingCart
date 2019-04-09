@@ -21,10 +21,7 @@ public class ShoppingResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public ShoppingItem getItem(@PathParam("id")String name) {
-        ShoppingItem item = new ShoppingItem();
-        item.setProduct(name);
-        item.setAmount(1);
-        item.setUnitprice(50);
-        return  item;
+      
+        return  ShoppingCart.getItem(name);
     }
 }

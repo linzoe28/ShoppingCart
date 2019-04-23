@@ -39,5 +39,27 @@ public class ShoppingCart {
         }
         return null;
     }
-    
+
+    public static void updateItem(ShoppingItem item) {
+        ShoppingItem oldItem = getItem(item.getProduct());
+        oldItem.setAmount(item.getAmount());
+        oldItem.setUnitprice(item.getUnitprice());
+    }
+
+    public static void removeItem(String product) {
+        int index = -1;
+        for (int i = 0; i < items.size(); i++) {
+            ShoppingItem item = items.get(i);
+            if (item.getProduct().equals(product)) {
+                index = i;
+                break;
+            }
+        }
+        items.remove(index);
+    }
+
+    public static void addITem(ShoppingItem item) {
+        items.add(item);
+    }
+
 }

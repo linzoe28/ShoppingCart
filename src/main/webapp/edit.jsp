@@ -15,8 +15,19 @@
         <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
     </head> 
     <script>
+        let v = null;
+        function update() {
+            $.ajax("webapi/item", {
+                "type": "PUT",
+                "contentType": "application/json",
+                "data": JSON.stringify(v.item),
+                "success": function () {
+                    window.location.href = "list.jsp";
+                }
+            });
+        }
         $(document).ready(function () {
-            let v = null;
+
             $.ajax("webapi/item/<%=request.getParameter("item")%>", {
                 success: function (r) {
                     v = new Vue({
@@ -24,9 +35,9 @@
                         "data": {
                             item: r
                         },
-                        "methods":{
-                            update:function(){
-                                
+                        "methods": {
+                            update: function () {
+
                             }
                         }
                     });
@@ -39,7 +50,7 @@
             Product Name : {{item.product}}<br/>
             Unit Price:{{item.unitprice}}<br/>
             Amount: <input type="text" v-model="item.amount"><br/>
-            <button v-on:click="">Update</button>
+            <button onclick="update();">Update</button>
         </div>
     </body>
 </html>

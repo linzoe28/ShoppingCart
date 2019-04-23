@@ -21,12 +21,17 @@
                 "data": {
                     items: []
                 },
-                "methods":{
-                    edit:function(item){
-                        window.location.href="edit.jsp?item="+item.product;
+                "methods": {
+                    edit: function (item) {
+                        window.location.href = "edit.jsp?item=" + item.product;
                     },
-                    remove:function(item){
-                        
+                    remove: function (item) {
+                       $.ajax("webapi/item/"+item.product,{
+                          type:"DELETE",
+                          success:function(){
+                               window.location.href = "list.jsp";
+                          }
+                       });
                     }
                 }
             });
@@ -53,12 +58,12 @@
                 <tr v-for="item in items">
                     <td>{{item.product}}</td>
                     <td>{{item.unitprice}}</td>
-                    <td>{{item.unitprice}}</td>
+                    <td>{{item.amount}}</td>
                     <td><button v-on:click="edit(item);">EDIT</button>
                         <button v-on:click="remove(item);">DELETE</button></td>
                 </tr>
             </tbody>
         </table>
-      
+
     </body>
 </html>

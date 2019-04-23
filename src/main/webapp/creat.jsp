@@ -33,10 +33,34 @@
     </script>
     <body>
         <div id="app">
-            Product Name : <input type="text" v-model="product"><br/>
-            Unit Price: <input type="text" v-model="unitPrice"><br/>
-            Amount: <input type="text" v-model="amount"><br/>
-            <button>Save</button>
+            Product Name : <input type="text" v-model="item.product"><br/>
+            Unit Price: <input type="text" v-model="item.unitprice"><br/>
+            Amount: <input type="text" v-model="item.amount"><br/>
+            <button onclick="save();">Save</button>
         </div>
+        
+        <script>
+            let v=null;
+            v=new Vue({
+               el:"#app",
+               data:{
+                   item:{
+                       product:"",
+                       unitprice:"",
+                       amount:""
+                   }
+               }
+            });
+            function save(){
+                $.ajax("webapi/item",{
+                    type:"POST",
+                    contentType:"application/json",
+                    data:JSON.stringify(v.item),
+                    success:function(){
+                        window.location.href="list.jsp";
+                    }
+                })
+            }
+        </script>
     </body>
 </html>

@@ -45,6 +45,12 @@
         });
     </script>
     <body>
+        <button onclick="add();">ADD</button>
+        <script>
+            function add(){
+                window.location.href="creat.jsp";
+            }
+        </script>
         <table border="1" style="width: 90%" id="app">
             <thead>
                 <tr>

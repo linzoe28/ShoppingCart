@@ -34,11 +34,6 @@
                         "el": "#app",
                         "data": {
                             item: r
-                        },
-                        "methods": {
-                            update: function () {
-
-                            }
                         }
                     });
                 }
